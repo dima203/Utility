@@ -1,5 +1,5 @@
 {
-    "name": "com.[wsap].[utility]",
+    "name": "com.wsap.utility",
     "version": "1.0.0",
     "displayName": "Utility Package",
     "description": "Пакет со вспомогательными классами для игры.",
