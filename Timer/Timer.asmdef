@@ -1,0 +1,16 @@
+{
+    "name": "Timer",
+    "rootNamespace": "",
+    "references": [
+        "GUID:2cbf6047d43839c4ca633ae274f86d35"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
