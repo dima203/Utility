@@ -4,7 +4,7 @@
     "displayName": "Utility Package",
     "description": "Пакет со вспомогательными классами для игры.",
     "unity": "2019.1",
-    "changelogUrl": "https://github.com/dima203/Utility/ChangeLog.md",
+    "changelogUrl": "https://github.com/dima203/Utility/blob/main/ChangeLog.md",
     "licensesUrl": "https://github.com/dima203/Utility/blob/main/LICENSE",
     "dependencies": { },
     "author": {
