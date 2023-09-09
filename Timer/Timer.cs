@@ -8,6 +8,7 @@ public class Timer
     protected float _seconds = 0f;
     protected Action _callback;
     protected float _currentSeconds = 0f;
+    protected bool _isRunning = false;
 
 
     public Timer(float seconds, Action callback)
@@ -29,6 +30,7 @@ public class Timer
             return;
 
         _currentSeconds = 0f;
+        _isRunning = true;
         EventBus.Subscribe<TimeUpdatedSignal>(OnTick);
     }
 
@@ -38,14 +40,14 @@ public class Timer
         if (_seconds == 0) 
             return;
 
-        OnTick(new TimeUpdatedSignal(deltaTime));
+        OnTick(deltaTime);
     }
 
 
     public void Stop()
     {
         _currentSeconds = 0f;
-        EventBus.Unsubscribe<TimeUpdatedSignal>(OnTick);
+        _isRunning = false;
     }
 
 
@@ -57,7 +59,16 @@ public class Timer
 
     protected virtual void OnTick(TimeUpdatedSignal signal)
     {
-        _currentSeconds += signal.DeltaTime; 
+        if (!_isRunning)
+            return;
+
+        OnTick(signal.DeltaTime);
+    }
+
+
+    protected virtual void OnTick(float deltaTime)
+    {
+        _currentSeconds += deltaTime; 
         TimeUpdated?.Invoke(_currentSeconds);
 
         if (_currentSeconds >= _seconds) {
@@ -69,7 +80,7 @@ public class Timer
 
     ~Timer()
     {
-        Stop();
+        EventBus.Unsubscribe<TimeUpdatedSignal>(OnTick);
     }
 }
 
@@ -81,6 +92,9 @@ public class ManualResetTimer: Timer
 
     protected override void OnTick(TimeUpdatedSignal signal)
     {
+        if (!_isRunning)
+            return;
+
         _currentSeconds += signal.DeltaTime;
 
         if (_currentSeconds >= _seconds)
