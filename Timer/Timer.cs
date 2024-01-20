@@ -5,7 +5,7 @@ public class Timer
 {
     public Action<float> TimeUpdated;
 
-    protected float _seconds = 0f;
+    protected float _seconds;
     protected Action _callback;
     protected float _currentSeconds = 0f;
     protected bool _isRunning = false;
