@@ -9,9 +9,15 @@ public class Counter<T>
     public T MaxValue;
 
 
-    public Counter(T maxValue)
+    public Counter()
     {
+        MaxValue = Math<T>.P.One;
         Value = Math<T>.P.Zero;
+    }
+
+
+    public Counter(T maxValue) : this()
+    {
         MaxValue = maxValue;
     }
 
@@ -55,18 +61,32 @@ public class Counter<T>
 [Serializable]
 public class BorderedValue<T>
 {
-    public T MinValue = Math<T>.P.Zero;
-    public T MaxValue = Math<T>.P.One;
+    public T MinValue;
+    public T MaxValue;
     public T Value { get => _value; private set => _value = value; }
 
-    [SerializeField] private T _value = Math<T>.P.Zero;
+    [SerializeField] private T _value;
 
 
-    public BorderedValue(T value, T minValue, T maxValue)
+    public BorderedValue() 
+    {
+        MinValue = Math<T>.P.Zero;
+        MaxValue = Math<T>.P.One;
+        Value = Math<T>.P.Zero;
+    }
+
+
+    public BorderedValue(T minValue, T maxValue)
+    {
+        MinValue = minValue; 
+        MaxValue = maxValue;
+        Value = minValue;
+    }
+
+
+    public BorderedValue(T minValue, T maxValue, T value) : this(minValue, maxValue)
     { 
         Value = value;
-        MinValue = minValue;
-        MaxValue = maxValue; 
         CheckOutBorder();
     }
 
