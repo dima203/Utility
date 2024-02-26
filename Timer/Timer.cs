@@ -15,6 +15,7 @@ public class Timer
     {
         _seconds = seconds;
         _callback = callback;
+        EventBus.Subscribe<TimeUpdatedSignal>(OnTick);
     }
 
 
@@ -31,7 +32,6 @@ public class Timer
 
         _currentSeconds = 0f;
         _isRunning = true;
-        EventBus.Subscribe<TimeUpdatedSignal>(OnTick);
     }
 
 
